@@ -175,6 +175,67 @@ body {
     transition: 0.3s;
 }
 
+
+.containerEsperti{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--blue-slate);
+    height: 100vh;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding: 5% 0.5% 5% 0.5%;
+    color: var(--white);
+    align-items: center;
+    font-size: 30px;
+
+}
+
+
+.containerPersona{
+
+    display: flex;
+    flex-direction: row;
+    background-color: var(--blue-slate);
+    height: 100vh;
+    padding-top: 5%;
+
+}
+
+.persona{
+
+
+    display: flex;
+    flex-direction: column;
+    justify-content: unset;
+    width: 50%;
+    height: 100%;
+    color: var(--white);
+    font-size: 2rem;
+    font-weight: 900;
+    border: 5px solid var(--blue-slate);
+    background-color: var(--white);
+
+}
+
+.persona p{
+    margin: 20px;
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .massive-btn:hover { border-color: var(--wisteria); color: var(--blue-slate); }
 
 .footer-meta { text-align: right; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; }
