@@ -1,0 +1,288 @@
+/* --- Setup & Palette Variabili --- */
+:root {
+    --sapphire: #2659A6;
+    --wisteria: #829CC4;
+    --alice-blue: #EDF3FF;
+    --blue-slate: #4B596D;
+    --white: #ffffff;
+    --black-tech: #1a1e24; /* Un nero tecnico leggermente più morbido per i testi scuri */
+    
+    --font-titles: 'Poppins', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-body);
+    line-height: 1.7;
+    color: var(--black-tech);
+    background-color: var(--white);
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-titles);
+    font-weight: 700;
+}
+
+.highlight { color: var(--sapphire); }
+.highlight-alt { color: var(--wisteria); }
+
+/* --- Elementi UI Riutilizzabili --- */
+.badget {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--sapphire);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 50px;
+    margin-bottom: 1.5rem;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: var(--sapphire);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px; /* Angoli più netti e professionali */
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: var(--transition);
+    border: 2px solid var(--sapphire);
+}
+
+.cta-button:hover {
+    background: transparent;
+    color: var(--sapphire);
+    transform: translateY(-2px);
+}
+
+.cta-link {
+    text-decoration: none;
+    color: var(--blue-slate);
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.cta-link:hover { color: var(--sapphire); padding-left: 5px; }
+
+/* --- Navbar --- */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--alice-blue);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    font-family: var(--font-titles);
+    color: var(--black-tech);
+    letter-spacing: -1px;
+}
+
+.logo span { color: var(--sapphire); }
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--blue-slate);
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.nav-links a:not(.btn-contact):hover { color: var(--sapphire); }
+
+.btn-contact {
+    background: var(--blue-slate);
+    color: white !important;
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
+    font-weight: 600;
+}
+.btn-contact:hover { background: var(--sapphire); }
+
+/* --- Hero Section --- */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background-color: var(--alice-blue);
+    padding-top: 80px; /* Spazio per la navbar fissa */
+}
+
+.hero-wrapper {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.hero-text h1 {
+    font-size: 3.8rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    letter-spacing: -2px;
+}
+
+.hero-text p {
+    font-size: 1.1rem;
+    color: var(--blue-slate);
+    margin-bottom: 3rem;
+    max-width: 550px;
+}
+
+.hero-btns {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+/* Elemento grafico puramente CSS */
+.tech-shape {
+    width: 100%;
+    height: 400px;
+    background: var(--sapphire);
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    box-shadow: 20px 20px 60px rgba(38, 89, 166, 0.2);
+    position: relative;
+}
+.tech-shape::after {
+    content:'';
+    position: absolute;
+    width: 100%; height: 100%;
+    background: var(--wisteria);
+    border-radius: 50%;
+    opacity: 0.5;
+    top: -20px; left: -20px;
+    z-index: -1;
+}
+
+/* --- Metodo Section --- */
+.metodo-section { padding: 10rem 0; }
+
+.section-header {
+    text-align: center;
+    margin-bottom: 6rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section-header h2 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+}
+
+.section-header p {
+    color: var(--wisteria);
+    font-size: 1.1rem;
+}
+
+.metodo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.metodo-card {
+    padding: 3rem;
+    border: 1px solid var(--alice-blue);
+    border-radius: 12px;
+    transition: var(--transition);
+}
+
+.card-icon {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--wisteria);
+    font-family: var(--font-titles);
+    margin-bottom: 1.5rem;
+}
+
+.metodo-card h3 {
+    margin-bottom: 1rem;
+    color: var(--black-tech);
+}
+
+/* Stato attivo per l'hover simulato */
+.metodo-card.active {
+    background: var(--blue-slate);
+    color: var(--alice-blue);
+    border-color: var(--blue-slate);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(75, 89, 109, 0.1);
+}
+.metodo-card.active h3 { color: white; }
+.metodo-card.active .card-icon { color: var(--sapphire); }
+
+/* --- Team Section --- */
+.team-section {
+    padding: 10rem 0;
+    background-color: var(--blue-slate); /* Sfondo scuro per contrasto */
+    color: var(--white);
+}
+
+.team-section .section-header p { color: var(--alice-blue); opacity: 0.8; }
+.team-section .section-header h2 { color: white; }
+
+.team-flow {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.team-member {
+    text-align: center;
+    width: 200px;
+    transition: var(--transition);
+}
+
+.team-member:hover { transform: translateY(-5px); }
+
+.member-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 1.5
