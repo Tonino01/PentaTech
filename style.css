@@ -191,38 +191,6 @@ body {
 }
 
 
-.containerPersona{
-
-    display: flex;
-    flex-direction: row;
-    background-color: var(--blue-slate);
-    height: 100vh;
-    padding-top: 5%;
-
-}
-
-.persona{
-
-
-    display: flex;
-    flex-direction: column;
-    justify-content: unset;
-    width: 50%;
-    height: 100%;
-    color: var(--white);
-    font-size: 2rem;
-    font-weight: 900;
-    border: 5px solid var(--blue-slate);
-    background-color: var(--white);
-
-}
-
-.persona p{
-    margin: 20px;
-    font-size: 1.2rem;
-    font-weight: 400;
-}
-
 
 
 
