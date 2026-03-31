@@ -3,127 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PentaTech | Soluzioni Web d'Élite</title>
+    <title>PentaTech | Eccellenza nell'Ingegneria del Software</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <nav class="navbar">
+    <nav class="nav-minimal">
         <div class="container">
-            <div class="logo">Penta<span>Tech</span></div>
-            <ul class="nav-links">
-                <li><a href="#home">Chi Siamo</a></li>
-                <li><a href="#metodo">Metodo</a></li>
-                <li><a href="#team">Il Quintetto</a></li>
-                <li><a href="#contatti" class="btn-contact">Inizia Progetto</a></li>
-            </ul>
+            <div class="logo">PENTA<span>TECH</span></div>
+            <div class="nav-links">
+                <a href="#vision">Vision</a>
+                <a href="#expertise">Expertise</a>
+                <a href="#partners">Partners</a>
+                <a href="#contact" class="nav-cta">Consulenza Direzionale</a>
+            </div>
         </div>
     </nav>
 
-    <header id="home" class="hero">
+    <header class="hero-serio">
         <div class="container">
-            <div class="hero-wrapper">
-                <div class="hero-text">
-                    <span class="badget">Agenzia Web d'Élite</span>
-                    <h1>Non creiamo solo siti. <br> <span class="highlight">Architettiamo</span> la tua autorità digitale.</h1>
-                    <p>PentaTech è un collettivo di 5 specialisti focalizzati sulla creazione di esperienze web ad alte prestazioni. Uniamo codice sartoriale e design d'avanguardia.</p>
-                    <div class="hero-btns">
-                        <a href="#team" class="cta-button">Incontra il Team</a>
-                        <a href="#metodo" class="cta-link">Il nostro metodo →</a>
-                    </div>
-                </div>
-                <div class="hero-visual">
-                    <div class="tech-shape"></div>
+            <div class="hero-inner">
+                <span class="line-label">Established 2026</span>
+                <h1>Sviluppo Web <br><span class="italic-serif">di Classe Superiore.</span></h1>
+                <p>Architetture digitali stabili, sicure e scalabili. Progettate per i leader di settore che non accettano compromessi sulla qualità tecnica.</p>
+                <div class="hero-actions">
+                    <a href="#expertise" class="btn-primary">I Nostri Servizi</a>
+                    <a href="#contact" class="btn-secondary">Contatta lo Studio</a>
                 </div>
             </div>
         </div>
     </header>
 
-    <section id="metodo" class="metodo-section">
+    <section id="vision" class="stats-bar">
         <div class="container">
-            <div class="section-header">
-                <h2>Il Potere dei <span class="highlight-alt">Cinque</span></h2>
-                <p>Oltre la semplice agenzia. Un ecosistema completo per il tuo successo online.</p>
+            <div class="stat-item">
+                <span class="stat-num">05</span>
+                <span class="stat-desc">Partner Senior</span>
             </div>
-            <div class="metodo-grid">
-                <div class="metodo-card">
-                    <div class="card-icon">1</div>
-                    <h3>Strategia</h3>
-                    <p>Analisi di mercato e definizione degli obiettivi aziendali.</p>
+            <div class="stat-item">
+                <span class="stat-num">100%</span>
+                <span class="stat-desc">Codice Proprietario</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-num">24/7</span>
+                <span class="stat-desc">Supporto Critico</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="expertise" class="services">
+        <div class="container">
+            <div class="section-tag">Expertise</div>
+            <div class="service-row">
+                <div class="service-col">
+                    <h2>Ingegneria <br>Front-end</h2>
+                    <p>Interfacce fluide sviluppate con i più moderni framework, ottimizzate per performance e accessibilità universale.</p>
                 </div>
-                <div class="metodo-card active">
-                    <div class="card-icon">2</div>
-                    <h3>Design</h3>
-                    <p>UI/UX sartoriale, focalizzata sulla conversione dell'utente.</p>
-                </div>
-                <div class="metodo-card">
-                    <div class="card-icon">3</div>
-                    <h3>Sviluppo</h3>
-                    <p>Codice pulito, performante e ottimizzato per i motori di ricerca.</p>
+                <div class="service-col">
+                    <h2>Sistemi <br>Cloud Backend</h2>
+                    <p>Infrastrutture robuste e sicure, capaci di gestire carichi di dati complessi con latenza prossima allo zero.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="team" class="team-section">
+    <section id="partners" class="team-corporate">
         <div class="container">
-            <div class="section-header">
-                <h2>Il Quintetto</h2>
-                <p>Cinque menti, una visione. Incontra gli architetti della tua presenza web.</p>
-            </div>
-            <div class="team-flow">
-                <div class="team-member">
-                    <div class="member-avatar sapphire"></div>
-                    <div class="member-info">
-                        <h3>Marco</h3>
-                        <span class="role-tag sapphire-tag">Core Developer</span>
-                    </div>
+            <div class="section-tag">Leadership</div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="member-id">01</div>
+                    <h3>M. Rossi</h3>
+                    <p>Software Architect</p>
                 </div>
-                <div class="team-member">
-                    <div class="member-avatar wisteria"></div>
-                    <div class="member-info">
-                        <h3>Sofia</h3>
-                        <span class="role-tag wisteria-tag">Visual Visionary</span>
-                    </div>
+                <div class="team-card">
+                    <div class="member-id">02</div>
+                    <h3>S. Bianchi</h3>
+                    <p>Experience Director</p>
                 </div>
-                <div class="team-member">
-                    <div class="member-avatar slategrey"></div>
-                    <div class="member-info">
-                        <h3>Luca</h3>
-                        <span class="role-tag slategrey-tag">SEO Architect</span>
-                    </div>
+                <div class="team-card">
+                    <div class="member-id">03</div>
+                    <h3>L. Neri</h3>
+                    <p>Systems Engineer</p>
                 </div>
-                <div class="team-member">
-                    <div class="member-avatar sapphire"></div>
-                    <div class="member-info">
-                        <h3>Elena</h3>
-                        <span class="role-tag sapphire-tag">Project Leader</span>
-                    </div>
+                <div class="team-card">
+                    <div class="member-id">04</div>
+                    <h3>E. Verdi</h3>
+                    <p>Operations Manager</p>
                 </div>
-                <div class="team-member">
-                    <div class="member-avatar wisteria"></div>
-                    <div class="member-info">
-                        <h3>Alessandro</h3>
-                        <span class="role-tag wisteria-tag">UX Strategist</span>
-                    </div>
+                <div class="team-card">
+                    <div class="member-id">05</div>
+                    <h3>A. Bruno</h3>
+                    <p>Security Lead</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer id="contatti" class="final-cta">
+    <footer id="contact" class="footer-serio">
         <div class="container">
-            <div class="cta-content">
-                <h2>Il tuo prossimo grande salto <br>digitale inizia qui.</h2>
-                <p>PentaTech accetta solo un numero limitato di progetti all'anno per garantire l'eccellenza. Il tuo sarà il prossimo?</p>
-                <a href="mailto:progetti@pentatech.it" class="cta-button large">Parliamo del tuo Progetto</a>
-            </div>
-            <div class="footer-bottom">
-                &copy; 2026 PentaTech Studio. Tutti i diritti riservati. <br>
-                Analisi. Codice. Design. Performance. Successo.
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <h2>Iniziamo una <br>conversazione.</h2>
+                    <p>PentaTech riceve solo su appuntamento per garantire la massima dedizione ad ogni singolo progetto.</p>
+                </div>
+                <div class="footer-contact">
+                    <a href="mailto:direzione@pentatech.it" class="mail-link">direzione@pentatech.it</a>
+                    <div class="legal">© 2026 PentaTech S.r.l. - P.IVA 0123456789</div>
+                </div>
             </div>
         </div>
     </footer>

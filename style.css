@@ -1,288 +1,224 @@
-/* --- Setup & Palette Variabili --- */
 :root {
     --sapphire: #2659A6;
     --wisteria: #829CC4;
     --alice-blue: #EDF3FF;
     --blue-slate: #4B596D;
     --white: #ffffff;
-    --black-tech: #1a1e24; /* Un nero tecnico leggermente più morbido per i testi scuri */
-    
-    --font-titles: 'Poppins', sans-serif;
-    --font-body: 'Inter', sans-serif;
-    --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    --text-dark: #1a1a1a;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-    font-size: 16px;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    font-family: var(--font-body);
-    line-height: 1.7;
-    color: var(--black-tech);
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-dark);
     background-color: var(--white);
-    overflow-x: hidden;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 5%;
-}
+.container { max-width: 1300px; margin: 0 auto; padding: 0 40px; }
 
-h1, h2, h3 {
-    font-family: var(--font-titles);
-    font-weight: 700;
-}
-
-.highlight { color: var(--sapphire); }
-.highlight-alt { color: var(--wisteria); }
-
-/* --- Elementi UI Riutilizzabili --- */
-.badget {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    background: var(--sapphire);
-    color: white;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-radius: 50px;
-    margin-bottom: 1.5rem;
-}
-
-.cta-button {
-    display: inline-block;
-    padding: 1rem 2.5rem;
-    background: var(--sapphire);
-    color: white;
-    text-decoration: none;
-    border-radius: 5px; /* Angoli più netti e professionali */
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: var(--transition);
-    border: 2px solid var(--sapphire);
-}
-
-.cta-button:hover {
-    background: transparent;
-    color: var(--sapphire);
-    transform: translateY(-2px);
-}
-
-.cta-link {
-    text-decoration: none;
-    color: var(--blue-slate);
-    font-weight: 500;
-    transition: var(--transition);
-}
-
-.cta-link:hover { color: var(--sapphire); padding-left: 5px; }
-
-/* --- Navbar --- */
-.navbar {
-    position: fixed;
-    top: 0;
+/* --- Navigazione --- */
+.nav-minimal {
+    padding: 30px 0;
+    position: absolute;
     width: 100%;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(5px);
-    z-index: 1000;
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--alice-blue);
+    z-index: 10;
 }
 
-.navbar .container {
+.nav-minimal .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .logo {
-    font-size: 1.8rem;
-    font-weight: 800;
-    font-family: var(--font-titles);
-    color: var(--black-tech);
-    letter-spacing: -1px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    font-size: 1.2rem;
 }
 
-.logo span { color: var(--sapphire); }
-
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 2.5rem;
-    align-items: center;
-}
+.logo span { color: var(--sapphire); font-weight: 300; }
 
 .nav-links a {
     text-decoration: none;
-    color: var(--blue-slate);
-    font-weight: 500;
-    font-size: 0.9rem;
-    transition: var(--transition);
+    color: var(--text-dark);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-left: 40px;
+    transition: color 0.3s;
 }
 
-.nav-links a:not(.btn-contact):hover { color: var(--sapphire); }
+.nav-links a:hover { color: var(--sapphire); }
 
-.btn-contact {
-    background: var(--blue-slate);
-    color: white !important;
-    padding: 0.7rem 1.5rem;
-    border-radius: 5px;
+.nav-cta {
+    border-bottom: 1px solid var(--sapphire);
+    padding-bottom: 5px;
     font-weight: 600;
 }
-.btn-contact:hover { background: var(--sapphire); }
 
-/* --- Hero Section --- */
-.hero {
-    height: 100vh;
+/* --- Hero --- */
+.hero-serio {
+    height: 90vh;
     display: flex;
     align-items: center;
     background-color: var(--alice-blue);
-    padding-top: 80px; /* Spazio per la navbar fissa */
+    border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
-.hero-wrapper {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 4rem;
-    align-items: center;
+.line-label {
+    display: block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--wisteria);
+    margin-bottom: 20px;
 }
 
-.hero-text h1 {
-    font-size: 3.8rem;
-    line-height: 1.2;
-    margin-bottom: 1.5rem;
-    letter-spacing: -2px;
+.hero-serio h1 {
+    font-size: 4.5rem;
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 30px;
+    color: var(--blue-slate);
 }
 
-.hero-text p {
+.italic-serif {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--sapphire);
+    font-weight: 600;
+}
+
+.hero-serio p {
+    max-width: 600px;
     font-size: 1.1rem;
     color: var(--blue-slate);
-    margin-bottom: 3rem;
-    max-width: 550px;
+    margin-bottom: 50px;
 }
 
-.hero-btns {
-    display: flex;
-    gap: 2rem;
-    align-items: center;
-}
-
-/* Elemento grafico puramente CSS */
-.tech-shape {
-    width: 100%;
-    height: 400px;
+.btn-primary {
+    display: inline-block;
+    padding: 18px 40px;
     background: var(--sapphire);
-    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-    box-shadow: 20px 20px 60px rgba(38, 89, 166, 0.2);
-    position: relative;
-}
-.tech-shape::after {
-    content:'';
-    position: absolute;
-    width: 100%; height: 100%;
-    background: var(--wisteria);
-    border-radius: 50%;
-    opacity: 0.5;
-    top: -20px; left: -20px;
-    z-index: -1;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-right: 20px;
+    transition: opacity 0.3s;
 }
 
-/* --- Metodo Section --- */
-.metodo-section { padding: 10rem 0; }
-
-.section-header {
-    text-align: center;
-    margin-bottom: 6rem;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
+.btn-secondary {
+    display: inline-block;
+    padding: 18px 40px;
+    border: 1px solid var(--blue-slate);
+    color: var(--blue-slate);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
 }
 
-.section-header h2 {
-    font-size: 2.8rem;
-    margin-bottom: 1rem;
-    letter-spacing: -1px;
+/* --- Stats Bar --- */
+.stats-bar {
+    padding: 60px 0;
+    background: white;
+    border-bottom: 1px solid var(--alice-blue);
 }
 
-.section-header p {
-    color: var(--wisteria);
-    font-size: 1.1rem;
-}
-
-.metodo-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-}
-
-.metodo-card {
-    padding: 3rem;
-    border: 1px solid var(--alice-blue);
-    border-radius: 12px;
-    transition: var(--transition);
-}
-
-.card-icon {
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--wisteria);
-    font-family: var(--font-titles);
-    margin-bottom: 1.5rem;
-}
-
-.metodo-card h3 {
-    margin-bottom: 1rem;
-    color: var(--black-tech);
-}
-
-/* Stato attivo per l'hover simulato */
-.metodo-card.active {
-    background: var(--blue-slate);
-    color: var(--alice-blue);
-    border-color: var(--blue-slate);
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(75, 89, 109, 0.1);
-}
-.metodo-card.active h3 { color: white; }
-.metodo-card.active .card-icon { color: var(--sapphire); }
-
-/* --- Team Section --- */
-.team-section {
-    padding: 10rem 0;
-    background-color: var(--blue-slate); /* Sfondo scuro per contrasto */
-    color: var(--white);
-}
-
-.team-section .section-header p { color: var(--alice-blue); opacity: 0.8; }
-.team-section .section-header h2 { color: white; }
-
-.team-flow {
+.stats-bar .container {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 3rem;
+    justify-content: space-between;
 }
 
-.team-member {
-    text-align: center;
-    width: 200px;
-    transition: var(--transition);
+.stat-num {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--sapphire);
 }
 
-.team-member:hover { transform: translateY(-5px); }
+.stat-desc {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--wisteria);
+}
 
-.member-avatar {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    margin: 0 auto 1.5
+/* --- Services & Team --- */
+.section-tag {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--wisteria);
+    margin-bottom: 60px;
+    padding-top: 100px;
+}
+
+.service-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    padding-bottom: 100px;
+}
+
+.service-col h2 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 30px;
+    color: var(--blue-slate);
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    padding-bottom: 150px;
+}
+
+.team-card {
+    padding: 30px;
+    background: var(--alice-blue);
+    transition: background 0.3s;
+}
+
+.team-card:hover { background: var(--wisteria); }
+
+.member-id { font-size: 0.7rem; color: var(--sapphire); margin-bottom: 20px; }
+
+.team-card h3 { font-size: 1rem; margin-bottom: 5px; }
+.team-card p { font-size: 0.8rem; color: var(--blue-slate); }
+
+/* --- Footer --- */
+.footer-serio {
+    background: var(--blue-slate);
+    color: white;
+    padding: 120px 0 60px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    align-items: flex-end;
+}
+
+.footer-info h2 { font-size: 3.5rem; font-weight: 300; margin-bottom: 20px; }
+
+.mail-link {
+    display: block;
+    font-size: 2.5rem;
+    color: var(--alice-blue);
+    text-decoration: none;
+    margin-bottom: 60px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.legal { font-size: 0.7rem; opacity: 0.5; letter-spacing: 1px; }
+
+/* Responsive */
+@media (max-width: 900px) {
+    .service-row, .team-grid, .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero-serio h1 { font-size: 3rem; }
+}
