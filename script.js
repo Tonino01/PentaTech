@@ -1,84 +1,102 @@
-// Dati dei profili
-        const profiles = [
-            {
-                id: 1,
-                name: 'Moretton Alessandro',
-                image: '/immagini/Moretton.png'
-            },
-            {
-                id: 2,
-                name: 'Lorenzo Del Puppo',
-                image: '/immagini/DelPuppo.png'
-            },
-            {
-                id: 3,
-                name: 'Alejandro Diaz Iacobucci',
-                image: '/immagini/Diaz.png'
-            },
-            {
-                id: 4,
-                name: 'Tonin Daniel',
-                image: '/immagini/Tonin.png'
-            },
-            {
-                id: 5,
-                name: 'Martinello Alessio',
-                image: '/immagini/Martinello.png'
-            }
-        ];
+const profiles = [
+    {
+        id: 1,
+        name: 'Moretton Alessandro',
+        role: 'Lead Developer',
+        bio: 'Architetto del codice, appassionato di sistemi scalabili e performance al limite.',
+        image: '/immagini/Moretton.png'
+    },
+    {
+        id: 2,
+        name: 'Lorenzo Del Puppo',
+        role: 'UX Strategist',
+        bio: 'Trasforma la complessità in interfacce intuitive che le persone adorano usare.',
+        image: '/immagini/DelPuppo.png'
+    },
+    {
+        id: 3,
+        name: 'Alejandro Diaz Iacobucci',
+        role: 'Full Stack Engineer',
+        bio: 'Dal database al pixel: padroneggia ogni livello dello stack con eleganza.',
+        image: '/immagini/Diaz.png'
+    },
+    {
+        id: 4,
+        name: 'Tonin Daniel',
+        role: 'Cyber Security Specialist',
+        bio: 'Trova le vulnerabilità prima che lo facciano gli altri. Pensa come un attaccante.',
+        image: '/immagini/Tonin.png'
+    },
+    {
+        id: 5,
+        name: 'Martinello Alessio',
+        role: 'SEO & Growth Hacker',
+        bio: 'Porta i progetti in cima ai risultati. Dati, keyword e strategia pura.',
+        image: '/immagini/Martinello.png'
+    }
+];
 
-        // Funzione per creare i card
-        const container = document.getElementById("peoplecontainer");
+const container = document.getElementById("peoplecontainer");
 
-        profiles.forEach(person => {
-            const card = document.createElement("div");
-            card.className = "card";
+profiles.forEach(person => {
+    const card = document.createElement("div");
+    card.className = "card";
 
-            const cardTop = document.createElement("div");
-            cardTop.className = "card-top";
+    // --- TOP (sempre visibile) ---
+    const cardTop = document.createElement("div");
+    cardTop.className = "card-top";
 
-            const cardLeft = document.createElement("div");
-            cardLeft.className = "card-left";
+    const number = document.createElement("span");
+    number.className = "card-number";
+    number.textContent = `0${person.id}`;
 
-            const number = document.createElement("span");
-            number.className = "card-number";
-            number.textContent = person.id;
+    const label = document.createElement("span");
+    label.className = "card-label";
+    label.textContent = person.name;
 
-            const label = document.createElement("span");
-            label.className = "card-label";
-            label.textContent = person.name;
+    const plus = document.createElement("span");
+    plus.className = "card-plus";
+    plus.textContent = "+";
 
-            const plus = document.createElement("span");
-            plus.className = "card-plus";
-            plus.textContent = "+";
+    cardTop.appendChild(number);
+    cardTop.appendChild(label);
+    cardTop.appendChild(plus);
 
-            const panel = document.createElement("div");
-            panel.className = "card-panel";
+    // --- PANEL (espandibile) ---
+    const panel = document.createElement("div");
+    panel.className = "card-panel";
 
-            const img = document.createElement("img");
-            img.src = person.image;
-            img.alt = person.name;
-            img.className = "card-img";
+    const img = document.createElement("img");
+    img.src = person.image;
+    img.alt = person.name;
+    img.className = "card-img";
 
-            const desc = document.createElement("p");
-            desc.className = "card-desc";
-            desc.textContent = person.name;
+    const info = document.createElement("div");
+    info.className = "card-info";
 
-            cardLeft.appendChild(number);
-            cardLeft.appendChild(label);
-            cardTop.appendChild(cardLeft);
-            cardTop.appendChild(plus);
-            panel.appendChild(img);
-            panel.appendChild(desc);
-            card.appendChild(cardTop);
-            card.appendChild(panel);
-            container.appendChild(card);
+    const role = document.createElement("span");
+    role.className = "card-role";
+    role.textContent = person.role;
 
-            plus.addEventListener("click", () => {
-                const isOpen = card.classList.toggle("card--open");
-                plus.textContent = isOpen ? "−" : "+";
-            });
-        });
+    const bio = document.createElement("p");
+    bio.className = "card-bio";
+    bio.textContent = person.bio;
+
+    info.appendChild(role);
+    info.appendChild(bio);
+    panel.appendChild(img);
+    panel.appendChild(info);
+
+    card.appendChild(cardTop);
+    card.appendChild(panel);
+    container.appendChild(card);
+
+    // Toggle: clic sull'intera riga top
+    cardTop.addEventListener("click", () => {
+        const isOpen = card.classList.toggle("card--open");
+        plus.textContent = isOpen ? "−" : "+";
+    });
+});
 
         // ===== EFFETTI GLOBALI DI APPARIZIONE =====
         
@@ -140,25 +158,6 @@
                 item.addEventListener('mouseleave', function() {
                     this.style.transform = 'translateY(0) scale(1)';
                     this.style.boxShadow = 'none';
-                });
-            });
-        }
-        
-        // Effetto hover su team members
-        function initTeamMembersEffect() {
-            const members = document.querySelectorAll('.member-row');
-            
-            members.forEach(member => {
-                member.addEventListener('mouseenter', function() {
-                    this.style.backgroundColor = 'rgba(131, 156, 196, 0.1)';
-                    this.style.paddingLeft = '40px';
-                    this.style.transform = 'translateX(10px)';
-                });
-                
-                member.addEventListener('mouseleave', function() {
-                    this.style.backgroundColor = 'transparent';
-                    this.style.paddingLeft = '0';
-                    this.style.transform = 'translateX(0)';
                 });
             });
         }
