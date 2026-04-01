@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PentaTech | Progetti</title>
-    <link rel="stylesheet" href="progettiStyle.css">
+    <link rel="stylesheet" href="/stili/style.css">
+    <link rel="stylesheet" href="/stili/progettiStyle.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
 </head>
@@ -38,75 +39,19 @@
                 <!-- I tuoi progetti verranno inseriti qui -->
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="immagini/project1.jpg" alt="Progetto 1">
+                        <img src="https://www.artribune.com/wp-content/uploads/2025/12/img20251121120802-scaled.jpg" alt="Progetto 1">
                     </div>
                     <div class="project-content">
-                        <h3>Titolo Progetto</h3>
-                        <p class="project-category">Categoria</p>
-                        <p class="project-description">Descrizione breve del progetto e dei risultati ottenuti.</p>
+                        <h3>FotoSpace</h3>
+                        <p class="project-category">Mostra Digitale</p>
+                        <p class="project-description">Descrizione</p>
                         <a href="#" class="project-link">Scopri di più →</a>
                     </div>
                 </div>
 
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="immagini/project2.jpg" alt="Progetto 2">
-                    </div>
-                    <div class="project-content">
-                        <h3>Titolo Progetto</h3>
-                        <p class="project-category">Categoria</p>
-                        <p class="project-description">Descrizione breve del progetto e dei risultati ottenuti.</p>
-                        <a href="#" class="project-link">Scopri di più →</a>
-                    </div>
-                </div>
+                
 
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="immagini/project3.jpg" alt="Progetto 3">
-                    </div>
-                    <div class="project-content">
-                        <h3>Titolo Progetto</h3>
-                        <p class="project-category">Categoria</p>
-                        <p class="project-description">Descrizione breve del progetto e dei risultati ottenuti.</p>
-                        <a href="#" class="project-link">Scopri di più →</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="immagini/project4.jpg" alt="Progetto 4">
-                    </div>
-                    <div class="project-content">
-                        <h3>Titolo Progetto</h3>
-                        <p class="project-category">Categoria</p>
-                        <p class="project-description">Descrizione breve del progetto e dei risultati ottenuti.</p>
-                        <a href="#" class="project-link">Scopri di più →</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="immagini/project5.jpg" alt="Progetto 5">
-                    </div>
-                    <div class="project-content">
-                        <h3>Titolo Progetto</h3>
-                        <p class="project-category">Categoria</p>
-                        <p class="project-description">Descrizione breve del progetto e dei risultati ottenuti.</p>
-                        <a href="#" class="project-link">Scopri di più →</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="immagini/project6.jpg" alt="Progetto 6">
-                    </div>
-                    <div class="project-content">
-                        <h3>Titolo Progetto</h3>
-                        <p class="project-category">Categoria</p>
-                        <p class="project-description">Descrizione breve del progetto e dei risultati ottenuti.</p>
-                        <a href="#" class="project-link">Scopri di più →</a>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </section>
@@ -125,5 +70,56 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Funzione per animazione typing del titolo progetti
+        function initProjectsTitleTypingEffect() {
+            const h1 = document.querySelector('.projects-hero h1');
+            if (!h1) return;
+            
+            const originalHTML = h1.innerHTML;
+            const text = h1.textContent;
+            
+            // Ricostruiamo con ogni carattere wrappato in uno span
+            let newHTML = '';
+            let charIndex = 0;
+            
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = originalHTML;
+            
+            // Funzione ricorsiva per processare i nodi
+            function processNode(node) {
+                if (node.nodeType === 3) { // Text node
+                    let html = '';
+                    for (let i = 0; i < node.textContent.length; i++) {
+                        const char = node.textContent[i];
+                        html += `<span class="char" style="animation-delay: ${charIndex * 0.08}s">${char}</span>`;
+                        charIndex++;
+                    }
+                    return html;
+                } else if (node.nodeType === 1) { // Element node
+                    if (node.tagName === 'BR') {
+                        return '<br>';
+                    }
+                    let html = `<${node.tagName} class="${node.className}">`;
+                    for (let child of node.childNodes) {
+                        html += processNode(child);
+                    }
+                    html += `</${node.tagName}>`;
+                    return html;
+                }
+                return '';
+            }
+            
+            newHTML = processNode(tempDiv) || originalHTML;
+            h1.innerHTML = newHTML;
+        }
+        
+        // Chiamare la funzione quando il DOM è pronto
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                initProjectsTitleTypingEffect();
+            }, 300);
+        });
+    </script>
 </body>
 </html>
