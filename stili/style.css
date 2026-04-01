@@ -2,7 +2,7 @@
     --sapphire: #2659A6;
     --wisteria: #829CC4;
     --alice-blue: #EDF3FF;
-    --blue-slate: #4d6281;
+    --blue-slate: #3B5786;
     --black: #0a0a0a;
     --white: #ffffff;
 }
@@ -33,13 +33,21 @@ body {
 }
 
 .logo {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
     font-size: 1.5rem;
     letter-spacing: -1px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .logo span { color: var(--sapphire); }
+
+.logo img {
+    height: 40px;
+    margin-right: 10px;
+}
 
 .nav-links a {
     text-decoration: none;
@@ -190,7 +198,6 @@ body {
 
 }
 
-
 .title{
     font-size: 50px;
     font-weight: 900;
@@ -199,165 +206,18 @@ body {
     margin-left: 5%;
 }
 /* --- PEOPLE SECTION --- */
-#peoples {
-    background-color: var(--alice-blue);
-    padding-top: 80px;
-    padding-bottom: 80px;
-}
 
-#peoples .title {
-    font-size: clamp(2rem, 6vw, 4rem);
-    font-weight: 900;
-    letter-spacing: -2px;
-    color: var(--sapphire);
-    margin-left: 5%;
-    margin-bottom: 50px;
-}
-
-#peoplecontainer {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    padding: 0 5%;
-}
-
-/* Card chiusa */
-.card {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    border-bottom: 1px solid rgba(38, 89, 166, 0.2);
-    border-radius: 0;
-    border-left: none;
-    border-right: none;
-    border-top: none;
-    box-sizing: border-box;
-    background: transparent;
-    transition: background 0.3s ease;
-}
-
-.card:first-child {
-    border-top: 1px solid rgba(38, 89, 166, 0.2);
-}
-
-.card:hover {
-    background: rgba(38, 89, 166, 0.04);
-}
-
-/* Header sempre visibile */
-.card-top {
-    display: grid;
-    grid-template-columns: 60px 1fr 40px;
-    align-items: center;
-    gap: 20px;
-    padding: 28px 10px;
-    cursor: pointer;
-    transition: padding 0.3s ease;
-    min-height: 90px;
-}
-
-.card:hover .card-top {
-    padding-left: 20px;
-}
-
-.card-left {
-    display: contents; /* Lascia che number e label vadano nelle colonne della grid */
-}
-
-.card-number {
-    font-size: 2rem;
-    font-weight: 900;
-    color: var(--sapphire);
-    font-family: 'Inter', sans-serif;
-    letter-spacing: 1px;
-}
-
-.card-label {
-    font-size: clamp(1.2rem, 3vw, 2rem);
-    font-weight: 900;
-    color: var(--black);
-    letter-spacing: -1px;
-    font-family: 'Inter', sans-serif;
-    transition: color 0.3s ease;
-}
-
-.card:hover .card-label {
-    color: var(--sapphire);
-}
-
-.card-plus {
-    font-size: 1.8rem;
-    font-weight: 300;
-    color: var(--sapphire);
-    cursor: pointer;
-    text-align: right;
-    line-height: 1;
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    user-select: none;
-}
-
-.card--open .card-plus {
-    transform: rotate(45deg);
-}
-
-/* Pannello espanso */
-.card-panel {
-    display: grid;
-    grid-template-columns: 160px 1fr;
-    gap: 30px;
-    align-items: center;
-    padding: 0 10px;
-    max-height: 0;
-    overflow: hidden;
+/* --- PROJECTS HERO --- */
+.projects-hero h1 .char,
+.hero-hybrid h1 .char {
+    display: inline;
     opacity: 0;
-    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-                opacity 0.4s ease,
-                padding 0.4s ease;
+    animation: charAppear 0.08s ease-out forwards;
 }
 
-.card--open .card-panel {
-    max-height: 260px;
-    opacity: 1;
-    padding: 0 10px 32px 10px;
-}
-
-.card-img {
-    width: 140px;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 4px;
-    display: block;
-    background: var(--wisteria); /* placeholder se img non carica */
-}
-
-.card-info {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.card-role {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--sapphire);
-    text-transform: uppercase;
-    letter-spacing: 3px;
-}
-
-.card-fullname {
-    font-size: clamp(1.4rem, 2.5vw, 2.2rem);
-    font-weight: 900;
-    color: var(--black);
-    letter-spacing: -1px;
-    line-height: 1.1;
-    font-family: 'Inter', sans-serif;
-}
-
-.card-bio {
-    font-size: 1.5rem;
-    color: var(--blue-slate);
-    line-height: 1.6;
-    max-width: 400px;
+@keyframes charAppear {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 /* Responsive */
