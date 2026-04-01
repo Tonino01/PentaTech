@@ -321,7 +321,7 @@ const container = document.getElementById("peoplecontainer");
                 
                 item.addEventListener('mouseenter', function() {
                     this.style.transform = 'translateX(10px)';
-                    this.style.color = 'var(--sapphire)';
+                    this.style.color = 'var(--white)';
                 });
                 
                 item.addEventListener('mouseleave', function() {
