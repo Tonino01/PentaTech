@@ -81,6 +81,21 @@ body {
     letter-spacing: -4px;
 }
 
+.hero-hybrid h1 .char {
+    display: inline;
+    opacity: 0;
+    animation: charAppear 0.08s ease-out forwards;
+}
+
+@keyframes charAppear {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 .outline-text {
     color: var(--sapphire);
     -webkit-text-stroke: 2px var(--black);

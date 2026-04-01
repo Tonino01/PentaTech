@@ -27,6 +27,49 @@
             }
         ];
 
+        // Funzione per animazione typing del titolo lettere per lettere
+        function initTitleTypingEffect() {
+            const h1 = document.querySelector('.hero-hybrid h1');
+            if (!h1) return;
+            
+            const originalHTML = h1.innerHTML;
+            const text = h1.textContent;
+            
+            // Ricostruiamo con ogni carattere wrappato in uno span
+            let newHTML = '';
+            let charIndex = 0;
+            
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = originalHTML;
+            
+            // Funzione ricorsiva per processare i nodi
+            function processNode(node) {
+                if (node.nodeType === 3) { // Text node
+                    let html = '';
+                    for (let i = 0; i < node.textContent.length; i++) {
+                        const char = node.textContent[i];
+                        html += `<span class="char" style="animation-delay: ${charIndex * 0.08}s">${char}</span>`;
+                        charIndex++;
+                    }
+                    return html;
+                } else if (node.nodeType === 1) { // Element node
+                    if (node.tagName === 'BR') {
+                        return '<br>';
+                    }
+                    let html = `<${node.tagName} class="${node.className}">`;
+                    for (let child of node.childNodes) {
+                        html += processNode(child);
+                    }
+                    html += `</${node.tagName}>`;
+                    return html;
+                }
+                return '';
+            }
+            
+            newHTML = processNode(tempDiv) || originalHTML;
+            h1.innerHTML = newHTML;
+        }
+        
         // Funzione per creare i card
         function createCards() {
             const galleryGrid = document.getElementById('galleryGrid');
@@ -252,6 +295,9 @@
 
         // Chiamare la funzione quando il DOM è pronto
         document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                initTitleTypingEffect();
+            }, 300);
             createCards();
             initPageLoadAnimation();
             initRevealAnimations();
