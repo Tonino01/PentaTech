@@ -3,26 +3,41 @@
             {
                 id: 1,
                 name: 'Moretton Alessandro',
+                role: 'CEO & Fondatore',
+                description: 'Visionario e stratega con oltre 10 anni di esperienza nel settore digitale. Guida PentaTech con passione e innovazione.',
+                skills: ['Leadership', 'Strategia Digitale', 'Business Development'],
                 image: '/immagini/1.png'
             },
             {
                 id: 2,
                 name: 'Lorenzo Del Puppo',
+                role: 'Lead Developer',
+                description: 'Sviluppatore full-stack esperto con specializzazione in tecnologie moderne. Trasforma idee in codice efficiente e scalabile.',
+                skills: ['React', 'Node.js', 'Python', 'DevOps'],
                 image: '/immagini/2.png'
             },
             {
                 id: 3,
                 name: 'Alejandro Diaz Jacobucci',
+                role: 'UX/UI Designer',
+                description: 'Designer creativo con occhio per i dettagli. Crea esperienze utente intuitive e interfacce accattivanti.',
+                skills: ['UI/UX Design', 'Figma', 'Prototyping', 'User Research'],
                 image: '/immagini/3.png'
             },
             {
                 id: 4,
                 name: 'Tonin Daniel',
+                role: 'Marketing Specialist',
+                description: 'Esperto di marketing digitale con focus su strategie di crescita. Aumenta la visibilità e engagement dei nostri clienti.',
+                skills: ['SEO/SEM', 'Social Media', 'Content Marketing', 'Analytics'],
                 image: '/immagini/4.png'
             },
             {
                 id: 5,
                 name: 'Martinello Alessio',
+                role: 'Project Manager',
+                description: 'Coordinatore di progetti con capacità organizzative eccezionali. Garantisce delivery puntuali e qualità superiore.',
+                skills: ['Project Management', 'Agile', 'Team Leadership', 'Quality Assurance'],
                 image: '/immagini/5.png'
             }
         ];
@@ -102,6 +117,55 @@
                 // Aggiungere al grid
                 galleryGrid.appendChild(card);
             });
+        }
+
+        function showProfileDetails(profile) {
+            const section = document.querySelector('.profile-details-section');
+            const role = section.querySelector('.profile-details-info h3');
+            const description = section.querySelector('.profile-details-info p');
+            const skillsContainer = section.querySelector('.profile-detail-skills');
+
+            // Popola i dati del profilo
+            role.textContent = profile.role;
+            description.textContent = profile.description;
+
+            // Pulisce e popola le skills
+            skillsContainer.innerHTML = '<h4>Competenze:</h4>';
+            profile.skills.forEach(skill => {
+                const skillTag = document.createElement('span');
+                skillTag.className = 'skill-tag';
+                skillTag.textContent = skill;
+                skillsContainer.appendChild(skillTag);
+            });
+
+            // Mostra la sezione con animazione
+            section.classList.add('show');
+
+            // Scrolla alla sezione
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Funzione per nascondere i dettagli del profilo
+        function hideProfileDetails() {
+            const section = document.querySelector('.profile-details-section');
+            section.classList.remove('show');
+        }
+
+        // Funzione per aggiungere event listener alle card
+        function initCardClickEvents() {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                card.addEventListener('click', () => {
+                    showProfileDetails(profiles[index]);
+                });
+                card.style.cursor = 'pointer';
+            });
+
+            // Evento per chiudere la sezione
+            const closeBtn = document.querySelector('.profile-close-btn');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', hideProfileDetails);
+            }
         }
 
         // ===== EFFETTI GLOBALI DI APPARIZIONE =====
@@ -299,6 +363,7 @@
                 initTitleTypingEffect();
             }, 300);
             createCards();
+            initCardClickEvents();
             initPageLoadAnimation();
             initRevealAnimations();
             initBentoTilt();
@@ -330,9 +395,6 @@
             `;
             document.head.appendChild(style);
         });
-
-
-
 
 
 
