@@ -1,130 +1,102 @@
-// Dati dei profili
-        
-        // Funzione per animazione typing del titolo lettere per lettere
-        function initTitleTypingEffect() {
-            const h1 = document.querySelector('.hero-hybrid h1');
-            if (!h1) return;
-            
-            const originalHTML = h1.innerHTML;
-            const text = h1.textContent;
-            
-            // Ricostruiamo con ogni carattere wrappato in uno span
-            let newHTML = '';
-            let charIndex = 0;
-            
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = originalHTML;
-            
-            // Funzione ricorsiva per processare i nodi
-            function processNode(node) {
-                if (node.nodeType === 3) { // Text node
-                    let html = '';
-                    for (let i = 0; i < node.textContent.length; i++) {
-                        const char = node.textContent[i];
-                        html += `<span class="char" style="animation-delay: ${charIndex * 0.08}s">${char}</span>`;
-                        charIndex++;
-                    }
-                    return html;
-                } else if (node.nodeType === 1) { // Element node
-                    if (node.tagName === 'BR') {
-                        return '<br>';
-                    }
-                    let html = `<${node.tagName} class="${node.className}">`;
-                    for (let child of node.childNodes) {
-                        html += processNode(child);
-                    }
-                    html += `</${node.tagName}>`;
-                    return html;
-                }
-                return '';
-            }
-            
-            newHTML = processNode(tempDiv) || originalHTML;
-            h1.innerHTML = newHTML;
-        }
-        
-        // Funzione per creare i card
-        function createCards() {
-            const galleryGrid = document.getElementById('galleryGrid');
-            
-            profiles.forEach((profile) => {
-                // Creare il card
-                const card = document.createElement('div');
-                card.className = 'card';
-                
-                // Creare l'immagine
-                const image = document.createElement('img');
-                image.className = 'card-image';
-                image.src = profile.image;
-                image.alt = profile.name;
-                
-                // Creare l'overlay
-                const overlay = document.createElement('div');
-                overlay.className = 'card-overlay';
-                
-                // Creare il nome
-                const name = document.createElement('div');
-                name.className = 'card-name';
-                name.textContent = profile.name;
-                
-                // Assemblare il card
-                overlay.appendChild(name);
-                card.appendChild(image);
-                card.appendChild(overlay);
-                
-                // Aggiungere al grid
-                galleryGrid.appendChild(card);
-            });
-        }
+const profiles = [
+    {
+        id: 1,
+        name: 'Moretton Alessandro',
+        role: 'Lead Developer',
+        bio: 'Architetto del codice, appassionato di sistemi scalabili e performance al limite.',
+        image: '/immagini/Moretton.png'
+    },
+    {
+        id: 2,
+        name: 'Lorenzo Del Puppo',
+        role: 'UX Strategist',
+        bio: 'Trasforma la complessità in interfacce intuitive che le persone adorano usare.',
+        image: '/immagini/DelPuppo.png'
+    },
+    {
+        id: 3,
+        name: 'Alejandro Diaz Iacobucci',
+        role: 'Full Stack Engineer',
+        bio: 'Dal database al pixel: padroneggia ogni livello dello stack con eleganza.',
+        image: '/immagini/Diaz.png'
+    },
+    {
+        id: 4,
+        name: 'Tonin Daniel',
+        role: 'Cyber Security Specialist',
+        bio: 'Trova le vulnerabilità prima che lo facciano gli altri. Pensa come un attaccante.',
+        image: '/immagini/Tonin.png'
+    },
+    {
+        id: 5,
+        name: 'Martinello Alessio',
+        role: 'SEO & Growth Hacker',
+        bio: 'Porta i progetti in cima ai risultati. Dati, keyword e strategia pura.',
+        image: '/immagini/Martinello.png'
+    }
+];
 
-        function showProfileDetails(profile) {
-            const section = document.querySelector('.profile-details-section');
-            const role = section.querySelector('.profile-details-info h3');
-            const description = section.querySelector('.profile-details-info p');
-            const skillsContainer = section.querySelector('.profile-detail-skills');
+const container = document.getElementById("peoplecontainer");
 
-            // Popola i dati del profilo
-            role.textContent = profile.role;
-            description.textContent = profile.description;
+profiles.forEach(person => {
+    const card = document.createElement("div");
+    card.className = "card";
 
-            // Pulisce e popola le skills
-            skillsContainer.innerHTML = '<h4>Competenze:</h4>';
-            profile.skills.forEach(skill => {
-                const skillTag = document.createElement('span');
-                skillTag.className = 'skill-tag';
-                skillTag.textContent = skill;
-                skillsContainer.appendChild(skillTag);
-            });
+    // --- TOP (sempre visibile) ---
+    const cardTop = document.createElement("div");
+    cardTop.className = "card-top";
 
-            // Mostra la sezione con animazione
-            section.classList.add('show');
+    const number = document.createElement("span");
+    number.className = "card-number";
+    number.textContent = `0${person.id}`;
 
-            // Scrolla alla sezione
-            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+    const label = document.createElement("span");
+    label.className = "card-label";
+    label.textContent = person.name;
 
-        // Funzione per nascondere i dettagli del profilo
-        function hideProfileDetails() {
-            const section = document.querySelector('.profile-details-section');
-            section.classList.remove('show');
-        }
+    const plus = document.createElement("span");
+    plus.className = "card-plus";
+    plus.textContent = "+";
 
-        // Funzione per aggiungere event listener alle card
-        function initCardClickEvents() {
-            const cards = document.querySelectorAll('.card');
-            cards.forEach((card, index) => {
-                card.addEventListener('click', () => {
-                    showProfileDetails(profiles[index]);
-                });
-                card.style.cursor = 'pointer';
-            });
+    cardTop.appendChild(number);
+    cardTop.appendChild(label);
+    cardTop.appendChild(plus);
 
-            // Evento per chiudere la sezione
-            const closeBtn = document.querySelector('.profile-close-btn');
-            if (closeBtn) {
-                closeBtn.addEventListener('click', hideProfileDetails);
-            }
-        }
+    // --- PANEL (espandibile) ---
+    const panel = document.createElement("div");
+    panel.className = "card-panel";
+
+    const img = document.createElement("img");
+    img.src = person.image;
+    img.alt = person.name;
+    img.className = "card-img";
+
+    const info = document.createElement("div");
+    info.className = "card-info";
+
+    const role = document.createElement("span");
+    role.className = "card-role";
+    role.textContent = person.role;
+
+    const bio = document.createElement("p");
+    bio.className = "card-bio";
+    bio.textContent = person.bio;
+
+    info.appendChild(role);
+    info.appendChild(bio);
+    panel.appendChild(img);
+    panel.appendChild(info);
+
+    card.appendChild(cardTop);
+    card.appendChild(panel);
+    container.appendChild(card);
+
+    // Toggle: clic sull'intera riga top
+    cardTop.addEventListener("click", () => {
+        const isOpen = card.classList.toggle("card--open");
+        plus.textContent = isOpen ? "−" : "+";
+    });
+});
 
         // ===== EFFETTI GLOBALI DI APPARIZIONE =====
         
@@ -186,25 +158,6 @@
                 item.addEventListener('mouseleave', function() {
                     this.style.transform = 'translateY(0) scale(1)';
                     this.style.boxShadow = 'none';
-                });
-            });
-        }
-        
-        // Effetto hover su team members
-        function initTeamMembersEffect() {
-            const members = document.querySelectorAll('.member-row');
-            
-            members.forEach(member => {
-                member.addEventListener('mouseenter', function() {
-                    this.style.backgroundColor = 'rgba(131, 156, 196, 0.1)';
-                    this.style.paddingLeft = '40px';
-                    this.style.transform = 'translateX(10px)';
-                });
-                
-                member.addEventListener('mouseleave', function() {
-                    this.style.backgroundColor = 'transparent';
-                    this.style.paddingLeft = '0';
-                    this.style.transform = 'translateX(0)';
                 });
             });
         }
@@ -317,11 +270,6 @@
 
         // Chiamare la funzione quando il DOM è pronto
         document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                initTitleTypingEffect();
-            }, 300);
-            createCards();
-            initCardClickEvents();
             initPageLoadAnimation();
             initRevealAnimations();
             initBentoTilt();
@@ -353,59 +301,3 @@
             `;
             document.head.appendChild(style);
         });
-
-
-
-
-        // Funzione per animazione typing del titolo progetti
-        function initProjectsTitleTypingEffect() {
-            const h1 = document.querySelector('.projects-hero h1');
-            if (!h1) return;
-            
-            const originalHTML = h1.innerHTML;
-            const text = h1.textContent;
-            
-            // Ricostruiamo con ogni carattere wrappato in uno span
-            let newHTML = '';
-            let charIndex = 0;
-            
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = originalHTML;
-            
-            // Funzione ricorsiva per processare i nodi
-            function processNode(node) {
-                if (node.nodeType === 3) { // Text node
-                    let html = '';
-                    for (let i = 0; i < node.textContent.length; i++) {
-                        const char = node.textContent[i];
-                        html += `<span class="char" style="animation-delay: ${charIndex * 0.08}s">${char}</span>`;
-                        charIndex++;
-                    }
-                    return html;
-                } else if (node.nodeType === 1) { // Element node
-                    if (node.tagName === 'BR') {
-                        return '<br>';
-                    }
-                    let html = `<${node.tagName} class="${node.className}">`;
-                    for (let child of node.childNodes) {
-                        html += processNode(child);
-                    }
-                    html += `</${node.tagName}>`;
-                    return html;
-                }
-                return '';
-            }
-            
-            newHTML = processNode(tempDiv) || originalHTML;
-            h1.innerHTML = newHTML;
-        }
-        
-        // Chiamare la funzione quando il DOM è pronto
-        document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                initProjectsTitleTypingEffect();
-            }, 300);
-        });
-
-
-    
