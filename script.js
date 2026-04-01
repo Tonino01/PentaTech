@@ -3,63 +3,82 @@
             {
                 id: 1,
                 name: 'Moretton Alessandro',
-                image: '/immagini/1.png'
+                image: '/immagini/Moretton.png'
             },
             {
                 id: 2,
                 name: 'Lorenzo Del Puppo',
-                image: '/immagini/2.png'
+                image: '/immagini/DelPuppo.png'
             },
             {
                 id: 3,
-                name: 'Alejandro Diaz Jacobucci',
-                image: '/immagini/3.png'
+                name: 'Alejandro Diaz Iacobucci',
+                image: '/immagini/Diaz.png'
             },
             {
                 id: 4,
                 name: 'Tonin Daniel',
-                image: '/immagini/4.png'
+                image: '/immagini/Tonin.png'
             },
             {
                 id: 5,
                 name: 'Martinello Alessio',
-                image: '/immagini/5.png'
+                image: '/immagini/Martinello.png'
             }
         ];
 
         // Funzione per creare i card
-        function createCards() {
-            const galleryGrid = document.getElementById('galleryGrid');
-            
-            profiles.forEach((profile) => {
-                // Creare il card
-                const card = document.createElement('div');
-                card.className = 'card';
-                
-                // Creare l'immagine
-                const image = document.createElement('img');
-                image.className = 'card-image';
-                image.src = profile.image;
-                image.alt = profile.name;
-                
-                // Creare l'overlay
-                const overlay = document.createElement('div');
-                overlay.className = 'card-overlay';
-                
-                // Creare il nome
-                const name = document.createElement('div');
-                name.className = 'card-name';
-                name.textContent = profile.name;
-                
-                // Assemblare il card
-                overlay.appendChild(name);
-                card.appendChild(image);
-                card.appendChild(overlay);
-                
-                // Aggiungere al grid
-                galleryGrid.appendChild(card);
+        const container = document.getElementById("peoplecontainer");
+
+        profiles.forEach(person => {
+            const card = document.createElement("div");
+            card.className = "card";
+
+            const cardTop = document.createElement("div");
+            cardTop.className = "card-top";
+
+            const cardLeft = document.createElement("div");
+            cardLeft.className = "card-left";
+
+            const number = document.createElement("span");
+            number.className = "card-number";
+            number.textContent = person.id;
+
+            const label = document.createElement("span");
+            label.className = "card-label";
+            label.textContent = person.name;
+
+            const plus = document.createElement("span");
+            plus.className = "card-plus";
+            plus.textContent = "+";
+
+            const panel = document.createElement("div");
+            panel.className = "card-panel";
+
+            const img = document.createElement("img");
+            img.src = person.image;
+            img.alt = person.name;
+            img.className = "card-img";
+
+            const desc = document.createElement("p");
+            desc.className = "card-desc";
+            desc.textContent = person.name;
+
+            cardLeft.appendChild(number);
+            cardLeft.appendChild(label);
+            cardTop.appendChild(cardLeft);
+            cardTop.appendChild(plus);
+            panel.appendChild(img);
+            panel.appendChild(desc);
+            card.appendChild(cardTop);
+            card.appendChild(panel);
+            container.appendChild(card);
+
+            plus.addEventListener("click", () => {
+                const isOpen = card.classList.toggle("card--open");
+                plus.textContent = isOpen ? "−" : "+";
             });
-        }
+        });
 
         // ===== EFFETTI GLOBALI DI APPARIZIONE =====
         
@@ -252,7 +271,6 @@
 
         // Chiamare la funzione quando il DOM è pronto
         document.addEventListener('DOMContentLoaded', () => {
-            createCards();
             initPageLoadAnimation();
             initRevealAnimations();
             initBentoTilt();
