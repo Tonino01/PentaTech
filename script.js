@@ -98,6 +98,55 @@ profiles.forEach(person => {
     });
 });
 
+        function showProfileDetails(profile) {
+            const section = document.querySelector('.profile-details-section');
+            const role = section.querySelector('.profile-details-info h3');
+            const description = section.querySelector('.profile-details-info p');
+            const skillsContainer = section.querySelector('.profile-detail-skills');
+
+            // Popola i dati del profilo
+            role.textContent = profile.role;
+            description.textContent = profile.description;
+
+            // Pulisce e popola le skills
+            skillsContainer.innerHTML = '<h4>Competenze:</h4>';
+            profile.skills.forEach(skill => {
+                const skillTag = document.createElement('span');
+                skillTag.className = 'skill-tag';
+                skillTag.textContent = skill;
+                skillsContainer.appendChild(skillTag);
+            });
+
+            // Mostra la sezione con animazione
+            section.classList.add('show');
+
+            // Scrolla alla sezione
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Funzione per nascondere i dettagli del profilo
+        function hideProfileDetails() {
+            const section = document.querySelector('.profile-details-section');
+            section.classList.remove('show');
+        }
+
+        // Funzione per aggiungere event listener alle card
+        function initCardClickEvents() {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                card.addEventListener('click', () => {
+                    showProfileDetails(profiles[index]);
+                });
+                card.style.cursor = 'pointer';
+            });
+
+            // Evento per chiudere la sezione
+            const closeBtn = document.querySelector('.profile-close-btn');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', hideProfileDetails);
+            }
+        }
+
         // ===== EFFETTI GLOBALI DI APPARIZIONE =====
         
         // Effetto reveal al caricamento della pagina
@@ -300,4 +349,57 @@ profiles.forEach(person => {
                 }
             `;
             document.head.appendChild(style);
+        });
+
+
+
+
+        // Funzione per animazione typing del titolo progetti
+        function initProjectsTitleTypingEffect() {
+            const h1 = document.querySelector('.projects-hero h1');
+            if (!h1) return;
+            
+            const originalHTML = h1.innerHTML;
+            const text = h1.textContent;
+            
+            // Ricostruiamo con ogni carattere wrappato in uno span
+            let newHTML = '';
+            let charIndex = 0;
+            
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = originalHTML;
+            
+            // Funzione ricorsiva per processare i nodi
+            function processNode(node) {
+                if (node.nodeType === 3) { // Text node
+                    let html = '';
+                    for (let i = 0; i < node.textContent.length; i++) {
+                        const char = node.textContent[i];
+                        html += `<span class="char" style="animation-delay: ${charIndex * 0.08}s">${char}</span>`;
+                        charIndex++;
+                    }
+                    return html;
+                } else if (node.nodeType === 1) { // Element node
+                    if (node.tagName === 'BR') {
+                        return '<br>';
+                    }
+                    let html = `<${node.tagName} class="${node.className}">`;
+                    for (let child of node.childNodes) {
+                        html += processNode(child);
+                    }
+                    html += `</${node.tagName}>`;
+                    return html;
+                }
+                return '';
+            }
+            
+            newHTML = processNode(tempDiv) || originalHTML;
+            h1.innerHTML = newHTML;
+        }
+        
+        // Chiamare la funzione quando il DOM è pronto
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                initProjectsTitleTypingEffect();
+            }, 300);
         });
