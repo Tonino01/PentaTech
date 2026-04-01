@@ -15,7 +15,7 @@ const profiles = [
     },
     {
         id: 3,
-        name: 'Alejandro Diaz Iacobucci',
+        name: 'Iacobucci Diaz Alejandro',
         role: 'Full Stack Engineer',
         bio: 'Dal database al pixel: padroneggia ogni livello dello stack con eleganza.',
         image: '/immagini/Diaz.png'
