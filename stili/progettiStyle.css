@@ -144,106 +144,91 @@
 }
 
 /* --- RESPONSIVE --- */
-@media (max-width: 900px) {
-    .projects-section {
-        padding: 80px 0;
-    }
-    
-    .projects-grid {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 30px;
-    }
-    
-    .projects-hero {
-        padding-top: 80px;
-    }
-    
-    .projects-hero h1 {
-        font-size: 4rem;
-    }
-}
+/* --- OTTIMIZZAZIONE MOBILE PROJECTS --- */
 
 @media (max-width: 768px) {
+    /* Hero dei progetti */
     .projects-hero {
         height: auto;
-        min-height: 70vh;
-        padding: 60px 5%;
+        min-height: 60vh; /* Ridotta l'altezza per non obbligare troppo scroll */
+        display: flex;
+        align-items: center;
+        padding: 100px 5% 60px 5%;
     }
-    
+
     .projects-hero h1 {
-        font-size: clamp(2rem, 8vw, 4rem);
+        /* Line-height leggermente aumentata per evitare sovrapposizioni su mobile */
+        line-height: 1; 
         letter-spacing: -2px;
+        font-size: 3.5rem; /* Override del clamp se necessario */
     }
-    
-    .projects-section {
-        padding: 60px 0;
-    }
-    
+
+    /* Griglia Progetti */
     .projects-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 25px;
-        margin-top: 40px;
+        /* Su mobile forziamo una colonna singola se lo spazio è poco, 
+           evitando che le card diventino troppo sottili */
+        grid-template-columns: 1fr; 
+        gap: 30px;
+        padding: 0 20px;
     }
-    
+
+    .project-card {
+        /* Riduciamo l'intensità dell'animazione di entrata per fluidità */
+        transform: translateY(20px); 
+    }
+
+    /* Gestione Hover su Touch */
+    .project-card:hover {
+        /* Evitiamo il sollevamento eccessivo che può nascondere il contenuto sopra */
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(38, 89, 166, 0.15);
+    }
+
     .project-image {
-        height: 200px;
+        height: 220px; /* Altezza fissa bilanciata */
     }
-    
+
     .project-content {
-        padding: 20px;
+        padding: 25px;
     }
-    
+
     .project-content h3 {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
-    
+
     .project-description {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
+        margin-bottom: 25px;
+    }
+
+    /* Rendiamo il link più facile da tappare (area cliccabile maggiore) */
+    .project-link {
+        padding: 10px 0;
+        font-size: 1rem;
     }
 }
 
 @media (max-width: 480px) {
-    .projects-hero {
-        min-height: 60vh;
-        padding: 40px 4%;
-    }
-    
     .projects-hero h1 {
-        font-size: clamp(1.5rem, 6vw, 2.5rem);
-        letter-spacing: -1px;
-        line-height: 0.9;
+        font-size: 2.8rem;
     }
-    
-    .projects-section {
-        padding: 40px 0;
-    }
-    
-    .projects-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        margin-top: 30px;
-    }
-    
+
     .project-image {
-        height: 180px;
+        height: 200px;
     }
-    
-    .project-content {
-        padding: 15px;
+
+    /* Animazioni più veloci su schermi piccoli per dare senso di reattività */
+    .project-card {
+        animation-duration: 0.5s;
     }
-    
-    .project-content h3 {
-        font-size: 1rem;
-        margin-bottom: 8px;
+}
+
+/* Fix per prevenire lo zoom dell'immagine al tocco su alcuni browser mobile */
+@media (hover: none) {
+    .project-card:hover .project-image img {
+        transform: none;
     }
-    
-    .project-category {
-        font-size: 0.7rem;
-        margin-bottom: 10px;
-    }
-    
-    .project-description {
-        font-size: 0.8rem;
-        margin-bottom: 15px;
+    .project-card:active .project-image img {
+        transform: scale(1.05); /* Zoom leggero solo al tocco prolungato */
     }
 }

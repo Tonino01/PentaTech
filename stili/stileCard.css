@@ -159,3 +159,86 @@
     line-height: 1.6;
     max-width: 400px;
 }
+
+/* --- OTTIMIZZAZIONE MOBILE PER SECTION PEOPLES --- */
+
+@media (max-width: 768px) {
+    #peoples {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    #peoples .title {
+        margin-bottom: 30px;
+        letter-spacing: -1px;
+        /* Il clamp gestirà già la riduzione, ma diamo un limite */
+        font-size: 2.2rem; 
+    }
+
+    /* Riduzione intestazione card */
+    .card-top {
+        grid-template-columns: 40px 1fr 30px; /* Colonne più strette */
+        gap: 15px;
+        padding: 20px 10px;
+    }
+
+    .card-number {
+        font-size: 1.4rem;
+    }
+
+    .card-label {
+        font-size: 1.3rem;
+    }
+
+    /* TRASFORMAZIONE PANNELLO ESPANSO */
+    .card-panel {
+        grid-template-columns: 1fr; /* Una sola colonna: immagine sopra, testo sotto */
+        gap: 20px;
+        padding: 0 10px;
+        justify-items: start; /* Allinea a sinistra */
+    }
+
+    .card--open .card-panel {
+        /* Aumentiamo l'altezza massima perché in verticale occupa più spazio */
+        max-height: 800px; 
+        padding: 0 10px 40px 10px;
+    }
+
+    .card-img {
+        width: 100%; /* L'immagine prende tutta la larghezza disponibile */
+        max-width: 250px; /* Ma non diventa gigante */
+        height: 300px; /* Proporzione più verticale */
+        aspect-ratio: 3/4;
+    }
+
+    .card-info {
+        gap: 15px;
+    }
+
+    .card-role {
+        font-size: 0.8rem; /* Ridimensionato per non urlare troppo su schermi piccoli */
+        letter-spacing: 2px;
+    }
+
+    .card-bio {
+        font-size: 1.1rem; /* Leggibilità migliorata per il pollice */
+        max-width: 100%;
+        line-height: 1.5;
+    }
+
+    /* Rimuoviamo l'effetto padding-left al hover su mobile 
+       per evitare movimenti fastidiosi al tocco */
+    .card:hover .card-top {
+        padding-left: 10px;
+    }
+}
+
+/* Fix per schermi extra-small */
+@media (max-width: 400px) {
+    .card-top {
+        gap: 10px;
+    }
+    .card-label {
+        font-size: 1.1rem;
+    }
+}
