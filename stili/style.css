@@ -348,9 +348,142 @@ body {
 }
 
 /* Responsive */
-@media (max-width: 900px) {
-    .bento-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
-    .member-row { grid-template-columns: 1fr; gap: 10px; }
-    .hero-hybrid h1 { font-size: 4rem; }
-    .footer-actions { flex-direction: column; align-items: flex-start; gap: 40px; }
+/* --- OTTIMIZZAZIONE RESPONSIVE GENERALE --- */
+
+@media (max-width: 1024px) {
+    .hero-hybrid h1 {
+        letter-spacing: -2px; /* Riduce l'overlap sui tablet */
+    }
+    
+    .bento-grid {
+        grid-template-columns: repeat(2, 1fr); /* Tablet: 2 colonne */
+        grid-template-rows: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Navigazione mobile semplificata */
+    .hybrid-nav {
+        padding: 15px 5%;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .nav-links a {
+        margin-left: 0;
+        margin: 0 10px;
+        font-size: 0.7rem;
+    }
+
+    /* Hero Section */
+    .hero-hybrid {
+        height: auto;
+        padding: 120px 0 60px 0;
+        text-align: left;
+    }
+
+    .hero-hybrid h1 {
+        font-size: 3.5rem; /* Forza una dimensione leggibile */
+        line-height: 1;
+        letter-spacing: -1px;
+    }
+
+    .outline-text {
+        -webkit-text-stroke: 1px var(--black); /* Tratto più sottile su mobile */
+    }
+
+    .hero-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+    }
+
+    /* Bento Grid diventa una lista verticale */
+    .bento-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        gap: 15px;
+    }
+
+    .main-service, .light-service {
+        grid-column: span 1;
+    }
+
+    .main-service h2 {
+        font-size: 2rem;
+    }
+
+    .bento-item {
+        min-height: 200px;
+    }
+
+    /* Team List */
+    .member-row {
+        grid-template-columns: 1fr auto;
+        gap: 5px;
+        padding: 20px 0;
+    }
+
+    .m-role {
+        grid-column: span 2;
+        order: 3;
+    }
+
+    .m-name {
+        font-size: 1.4rem;
+    }
+
+    /* Footer */
+    .footer-hybrid h2 {
+        font-size: 2.5rem;
+    }
+
+    .massive-btn {
+        font-size: 1.8rem;
+        border-bottom-width: 4px;
+    }
+
+    .footer-actions {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+    }
+
+    .footer-meta {
+        text-align: left;
+        font-size: 1.2rem;
+    }
+
+    .footer-meta p {
+        font-size: 1rem;
+    }
+
+    /* Contenitore Esperti */
+    .containerEsperti {
+        height: auto;
+        padding: 60px 5%;
+    }
+
+    .title {
+        font-size: 32px;
+        text-align: center;
+    }
+}
+
+/* Fix per schermi molto piccoli (iPhone SE, etc) */
+@media (max-width: 380px) {
+    .hero-hybrid h1 {
+        font-size: 2.8rem;
+    }
+    
+    .nav-links a {
+        font-size: 0.6rem;
+    }
 }
